@@ -27,11 +27,19 @@ spec:
     metadata:
       labels:
         app: coworking
+      annotations:
+        instrumentation.opentelemetry.io/inject-python: "false"
+        sidecar.opentelemetry.io/inject: "false"
+        cloudwatch.aws.amazon.com/auto-instrumentation: "false"
     spec:
       containers:
       - name: coworking
         image: 397834978306.dkr.ecr.us-east-1.amazonaws.com/coworking-analytics:1.0.6
         imagePullPolicy: Always
+        ports:
+        - name: http
+          containerPort: 5153
+          protocol: TCP
         resources:
           requests:
             cpu: "100m"
@@ -55,6 +63,8 @@ spec:
         - configMapRef:
             name: coworking-config
         env:
+        - name: PYTHONUNBUFFERED
+          value: "1"
         - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:

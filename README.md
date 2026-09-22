@@ -47,8 +47,8 @@ All declarative configuration files are structured in the `deployment/` director
 * `coworking-service.yaml`: Public load balancer routing inbound traffic on port 5153
 
 ### 9. AWS CloudWatch Application Logs
-Container log events streaming into CloudWatch Container Insights via Fluent Bit:
-![AWS CloudWatch Container Logs](screenshots/cloudwatch_logs.png)
+Container log events streaming into CloudWatch:
+![alt text](screenshots/new_cloudwatch_logs.png)
 
 ---
 
